@@ -1,50 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sync Color Change</title>
+  <title>Arduino Control App</title>
+  <style>
+    button {
+      margin: 10px;
+      padding: 15px;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-  <button id="colorButton" onclick="changeColor()">Click to Change Color</button>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
-  <script>
-    // Firebase config (replace with your own config)
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-
-    // Initialize Firebase
-    const app = firebase.initializeApp(firebaseConfig);
-    const database = firebase.database(app);
-
-    // Reference to the color in Firebase
-    const colorRef = database.ref('buttonColor');
-
-    // Listen for color change
-    colorRef.on('value', (snapshot) => {
-      const color = snapshot.val();
-      document.getElementById('colorButton').style.backgroundColor = color;
-    });
-
-    // Change color function
-    function changeColor() {
-      const colors = ['red', 'blue', 'green', 'yellow', 'orange'];
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-      // Update color in Firebase
-      colorRef.set(randomColor);
-    }
-  </script>
+  <h1>Arduino Control App</h1>
+  <button onclick="sendSignal('1')">Button 1</button>
+  <button onclick="sendSignal('2')">Button 2</button>
+  <button onclick="sendSignal('3')">Button 3</button>
+  <button onclick="sendSignal('4')">Button 4</button>
+  <button onclick="sendSignal('5')">Button 5</button>
+  <button onclick="sendSignal('6')">Button 6</button>
+  <script src="script.js"></script>
 </body>
 </html>
